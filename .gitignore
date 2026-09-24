@@ -1,0 +1,17 @@
+# Virtual environment
+venv/
+ENV/
+env/
+
+# Environment variables & secrets
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary and local databases
+temp_pdf/
+uploaded_chroma_db/
+.pytest_cache/

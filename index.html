@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="oled">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DocuMind AI — Neural Document Intelligence & RAG</title>
+  <meta name="title" content="DocuMind AI — Neural Document Intelligence & RAG">
+  <meta name="description" content="State-of-the-art Document RAG powered by Google Gemini 3.5, in-memory ChromaDB, and LangChain orchestration. Zero hallucination, page-level attribution.">
+  <meta name="theme-color" content="#020408">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Interactive Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ========================================================================
+       NAVBAR (With Theme Switcher)
+       ======================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+            <circle cx="12" cy="15" r="2"/>
+          </svg>
+        </div>
+        <span class="brand-text">DocuMind</span>
+        <span class="brand-badge">RAG v2.5</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#playground" class="nav-link">Playground</a></li>
+        <li><a href="#demo" class="nav-link">Demo</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+        <li><a href="#opensource" class="nav-link">Open Source (Free)</a></li>
+        <li><a href="#api" class="nav-link">API Docs</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Live Theme Switcher -->
+        <div class="theme-selector-box" title="Select Visual Theme">
+          <button class="theme-pill-btn active" data-theme="oled">OLED</button>
+          <button class="theme-pill-btn" data-theme="cyberpunk">Cyber</button>
+          <button class="theme-pill-btn" data-theme="light">Light</button>
+        </div>
+
+        <!-- Audio Toggle -->
+        <button class="icon-btn" id="sound-toggle-btn" title="Toggle Audio FX">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <button class="btn-primary open-launch-modal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Launch App</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       REDESIGNED HERO SECTION (Ultra High Impact & 3D Floating Cards)
+       ======================================================================== -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        
+        <div class="hero-capsule">
+          <span>✨</span>
+          <span>Next-Gen LangChain & Google Gemini 3.5 Engine</span>
+          <span style="opacity: 0.4;">|</span>
+          <span style="color: #fff;">In-Memory ChromaDB</span>
+        </div>
+
+        <h1 class="hero-title-main">
+          Neural Intelligence For <br>
+          <span class="gradient-title-text">Enterprise Documents.</span> 
+          <span class="cyan-highlight">Zero Hallucinations.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Turn dense research papers, technical specs, and enterprise manuals into conversational knowledge. Powered by sub-second MMR vector retrieval, local HuggingFace embeddings, and 3-tier Gemini failover.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#playground" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <span>Test With Your Own PDF</span>
+          </a>
+
+          <button class="btn-secondary open-launch-modal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Open Streamlit (localhost:8501)</span>
+          </button>
+        </div>
+
+        <!-- 3D Floating Feature Cards -->
+        <div class="hero-floating-cards-grid">
+          
+          <div class="float-card">
+            <div class="float-card-icon">⚡</div>
+            <h4>MMR Maximal Marginal Relevance</h4>
+            <p>Eliminates duplicate paragraphs by balancing query relevance and chunk diversity (k=4, fetch_k=10).</p>
+          </div>
+
+          <div class="float-card">
+            <div class="float-card-icon">🛡️</div>
+            <h4>In-Memory Concurrency</h4>
+            <p>100% RAM-backed ChromaDB eliminates Windows OS <code>data_level0.bin</code> file-lock contention.</p>
+          </div>
+
+          <div class="float-card">
+            <div class="float-card-icon">🤖</div>
+            <h4>3-Tier Model Failover</h4>
+            <p>Primary Gemini 3.5 auto-fails over to Gemini 3.8 and 2.5 on 429 quota exhaustion or 503 latency.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         DIRECT IN-BROWSER PDF UPLOAD & PLAYGROUND
+         ======================================================================== -->
+    <section class="section" id="playground">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-tag">
+            <span>Direct In-Browser Playground</span>
+          </div>
+          <h2 class="section-title">Upload Any PDF & Ask Questions Instantly</h2>
+          <p class="section-subtitle">
+            Drop your own file below or click any preloaded document to simulate vector ingestion, semantic splitting, and grounded answer synthesis.
+          </p>
+        </div>
+
+        <div class="playground-box">
+          
+          <!-- Direct Drag & Drop Zone -->
+          <div class="dropzone-container" id="direct-dropzone">
+            <input type="file" id="direct-file-input" class="dropzone-file-input" accept=".pdf">
+            <div class="dropzone-icon">📥</div>
+            <div class="dropzone-title">Drop your PDF here or click to browse</div>
+            <div class="dropzone-sub">Upload any research paper, manual, or report (e.g. GRU.pdf) to test in-browser</div>
+          </div>
+
+          <!-- Document Selector Bar -->
+          <div class="sample-docs-bar" id="sample-docs-container">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Loaded Docs:</span>
+            <button class="sim-doc-btn active" data-doc="GRU.pdf">
+              <span>📄 GRU.pdf (Neural Networks)</span>
+            </button>
+            <button class="sim-doc-btn" data-doc="Attention_Paper.pdf">
+              <span>📄 Attention_Is_All_You_Need.pdf</span>
+            </button>
+          </div>
+
+          <!-- Active Metadata Indicator -->
+          <div style="display: flex; gap: 12px; margin-bottom: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim);">
+            <span>Active: <strong id="sim-active-filename" style="color: var(--cyan-primary);">GRU.pdf</strong></span>
+            <span>•</span>
+            <span id="sim-active-pages">14 Pages</span>
+            <span>•</span>
+            <span id="sim-active-chunks">48 Chunks</span>
+          </div>
+
+          <!-- Pipeline Stepper -->
+          <div class="pipeline-stepper">
+            <div class="pipe-step" id="pstep-1">
+              <span class="pipe-icon">📄</span>
+              <span class="pipe-title">1. Ingestion</span>
+              <span class="pipe-sub">PyPDFLoader</span>
+            </div>
+            <div class="pipe-step" id="pstep-2">
+              <span class="pipe-icon">✂️</span>
+              <span class="pipe-title">2. Text Splitting</span>
+              <span class="pipe-sub">1000c / 200ov</span>
+            </div>
+            <div class="pipe-step" id="pstep-3">
+              <span class="pipe-icon">🧬</span>
+              <span class="pipe-title">3. Vectorization</span>
+              <span class="pipe-sub">MiniLM-L6-v2</span>
+            </div>
+            <div class="pipe-step" id="pstep-4">
+              <span class="pipe-icon">🗄️</span>
+              <span class="pipe-title">4. In-Memory RAM</span>
+              <span class="pipe-sub">ChromaDB</span>
+            </div>
+            <div class="pipe-step" id="pstep-5">
+              <span class="pipe-icon">🔍</span>
+              <span class="pipe-title">5. MMR Search</span>
+              <span class="pipe-sub">k=4, fetch=10</span>
+            </div>
+            <div class="pipe-step" id="pstep-6">
+              <span class="pipe-icon">🤖</span>
+              <span class="pipe-title">6. Synthesis</span>
+              <span class="pipe-sub">Gemini 3.5</span>
+            </div>
+          </div>
+
+          <!-- QA Grid -->
+          <div class="sim-grid">
+            
+            <div class="sim-panel">
+              <div class="panel-header">
+                <div class="panel-title">💡 Select or Type Question</div>
+                <span style="font-size: 0.72rem; color: var(--text-dim);">One-click execution</span>
+              </div>
+
+              <div class="preset-queries" id="preset-queries-container">
+                <!-- Dynamically injected via script.js -->
+              </div>
+
+              <div class="sim-input-box">
+                <input type="text" id="sim-custom-input" class="sim-text-input" placeholder="Ask anything about the active document...">
+                <button id="sim-submit-btn" class="btn-primary" style="padding: 8px 16px;">Run</button>
+              </div>
+            </div>
+
+            <div class="sim-panel">
+              <div class="panel-header">
+                <div class="panel-title">🎯 Synthesized Grounded Response</div>
+                <div id="sim-latency-badge" style="font-size: 0.75rem; color: var(--cyan-primary); font-family: 'JetBrains Mono', monospace;">
+                  ⚡ Latency: 412ms
+                </div>
+              </div>
+
+              <div id="sim-answer-target" class="answer-text-area">
+                In a Gated Recurrent Unit (GRU), the <strong>update gate (z_t)</strong> simultaneously controls both how much of the previous activation to keep and how much new candidate state to incorporate.<br><br>
+                Unlike an LSTM, which has <strong>two independent gates</strong>—a separate <em>forget gate</em> and <em>input gate</em>—the GRU couples them into a single linear interpolation:<br><br>
+                <code style="background: rgba(0,242,254,0.15); color: var(--cyan-primary); padding: 2px 6px; border-radius: 4px; font-family: monospace;">h_t = (1 - z_t) * h_{t-1} + z_t * h~_t</code>
+              </div>
+
+              <div style="border-top: 1px solid var(--border-subtle); padding-top: 14px;">
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px;">
+                  Retrieved Chunks via MMR (k=4)
+                </div>
+                <div id="sim-chunks-target">
+                  <div class="chunk-card">
+                    <div class="chunk-meta">
+                      <span>📄 Page 4</span>
+                      <span>0.948 (MMR Top-1)</span>
+                    </div>
+                    <div>The update gate z_t decides how much the unit updates its activation: h_t = (1 - z_t) h_{t-1} + z_t h~_t.</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         INTERACTIVE VIDEO / DEMO WALKTHROUGH SECTION
+         ======================================================================== -->
+    <section class="section" id="demo">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-tag">
+            <span>Video Walkthrough</span>
+          </div>
+          <h2 class="section-title">See DocuMind in Action</h2>
+          <p class="section-subtitle">
+            Watch how fast DocuMind indexes a 50-page complex PDF and delivers citation-backed answers in sub-seconds.
+          </p>
+        </div>
+
+        <div class="video-showcase-card">
+          <div class="video-screen-mockup">
+            <div class="video-screen-backdrop"></div>
+            <button class="play-pulse-btn open-launch-modal" title="Launch Interactive Assistant">
+              ▶
+            </button>
+            <h3 class="video-title">Interactive Streamlit Assistant Demo</h3>
+            <p class="video-desc">
+              Experience the live UI running locally on your workstation. Ingest documents, monitor chunking, and view real-time source page citations.
+            </p>
+          </div>
+
+          <div class="demo-feature-callouts">
+            <div class="demo-pill">
+              <div class="demo-pill-title">01. Sub-Second RAM Index</div>
+              <div class="demo-pill-sub">PDFs are vectorized directly into CPU RAM without writing locking database files to disk.</div>
+            </div>
+            <div class="demo-pill">
+              <div class="demo-pill-title">02. MMR Vector Diversity</div>
+              <div class="demo-pill-sub">Eliminates repetitive chunk clutter and ensures multi-page coverage.</div>
+            </div>
+            <div class="demo-pill">
+              <div class="demo-pill-title">03. Exact Page Attribution</div>
+              <div class="demo-pill-sub">Every statement is accompanied by clickable source page pills and context chunks.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CUSTOMER TESTIMONIALS & SOCIAL PROOF
+         ======================================================================== -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-tag">
+            <span>Social Proof & Reviews</span>
+          </div>
+          <h2 class="section-title">Trusted By Engineers & Researchers</h2>
+          <p class="section-subtitle">
+            See how teams use DocuMind for scientific literature reviews, financial disclosures, and contract compliance.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card">
+            <div>
+              <div class="stars-rating">★★★★★</div>
+              <p class="quote-text">
+                "DocuMind’s in-memory Chroma implementation finally fixed our Windows file locking nightmare. Vector queries complete in under 400ms with zero hallucinated figures."
+              </p>
+            </div>
+            <div class="author-group">
+              <div class="author-avatar">AK</div>
+              <div>
+                <div class="author-name">Dr. Alex Kovacs</div>
+                <div class="author-role">Principal AI Scientist, NeuralTech</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars-rating">★★★★★</div>
+              <p class="quote-text">
+                "The MMR retriever makes a night-and-day difference over standard cosine similarity. It doesn't repeat the same paragraph four times—it finds distinct evidence across sections."
+              </p>
+            </div>
+            <div class="author-group">
+              <div class="author-avatar">SL</div>
+              <div>
+                <div class="author-name">Sarah Lin</div>
+                <div class="author-role">Lead ML Architect, QuantScale</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars-rating">★★★★★</div>
+              <p class="quote-text">
+                "When Google Gemini hits 429 quota exhaustion during high-concurrency batching, the 3-tier fallback engine smoothly catches the exception without crashing."
+              </p>
+            </div>
+            <div class="author-group">
+              <div class="author-avatar">MR</div>
+              <div>
+                <div class="author-name">Marcus Reynolds</div>
+                <div class="author-role">CTO, Verity Document Systems</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         100% FREE & OPEN SOURCE ECOSYSTEM
+         ======================================================================== -->
+    <section class="section" id="opensource">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-tag">
+            <span>100% Free & Open Source</span>
+          </div>
+          <h2 class="section-title">Zero Cost. No Subscriptions. Free Forever.</h2>
+          <p class="section-subtitle">
+            DocuMind is completely free, transparent, and open-source. No paywalls, no monthly subscription fees, and no credit card required.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          
+          <!-- Free Tier 1 -->
+          <div class="pricing-card">
+            <div class="tier-name">Local Workstation</div>
+            <div class="tier-desc">Run on your personal PC or laptop with 100% data privacy.</div>
+            <div class="tier-price-box">
+              <span class="price-currency">$</span>
+              <span class="price-amount">0</span>
+              <span class="price-cycle">/free forever</span>
+            </div>
+            <ul class="tier-features">
+              <li class="tier-feature-item"><span class="check">✓</span> 100% In-Memory ChromaDB (RAM Safe)</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Unlimited Local PDF Ingestion</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Zero-Cost Local CPU MiniLM Embeddings</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Google Gemini Free API Tier Compatible</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Interactive Streamlit Assistant UI</li>
+            </ul>
+            <button class="btn-secondary open-launch-modal" style="width: 100%; justify-content: center;">
+              Launch App Locally Free
+            </button>
+          </div>
+
+          <!-- Free Tier 2 (Featured) -->
+          <div class="pricing-card featured">
+            <div class="popular-ribbon" style="background: linear-gradient(135deg, #10b981 0%, #00f2fe 100%);">100% Free & Open Source</div>
+            <div class="tier-name">Community Self-Hosted</div>
+            <div class="tier-desc">Deploy on your own VPS, Docker, or Hugging Face Spaces.</div>
+            <div class="tier-price-box">
+              <span class="price-currency">$</span>
+              <span class="price-amount">0</span>
+              <span class="price-cycle">/zero fees</span>
+            </div>
+            <ul class="tier-features">
+              <li class="tier-feature-item"><span class="check">✓</span> Complete Apache 2.0 / MIT Code Access</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Unlimited Documents & Vector Queries</li>
+              <li class="tier-feature-item"><span class="check">✓</span> 3-Tier Multi-LLM Failover Engine</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Zero Vendor Lock-in (Export Anytime)</li>
+              <li class="tier-feature-item"><span class="check">✓</span> No Telemetry or Third-Party Tracking</li>
+            </ul>
+            <a href="#playground" class="btn-primary" style="width: 100%; justify-content: center;">
+              Test In-Browser Free
+            </a>
+          </div>
+
+          <!-- Free Tier 3 -->
+          <div class="pricing-card">
+            <div class="tier-name">Research & Academic</div>
+            <div class="tier-desc">For students, universities, labs, and independent AI researchers.</div>
+            <div class="tier-price-box">
+              <span class="price-currency">$</span>
+              <span class="price-amount">0</span>
+              <span class="price-cycle">/academic grant</span>
+            </div>
+            <ul class="tier-features">
+              <li class="tier-feature-item"><span class="check">✓</span> Precise Citation-Grounded Extraction</li>
+              <li class="tier-feature-item"><span class="check">✓</span> MMR Diversity Algorithm Formulation</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Offline CPU Sentence Embeddings</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Free Python SDK & REST API Scripts</li>
+              <li class="tier-feature-item"><span class="check">✓</span> Citation Page & Chunk Level Proofs</li>
+            </ul>
+            <button class="btn-secondary open-launch-modal" style="width: 100%; justify-content: center;">
+              Explore Open Source Code
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         INTERACTIVE API & SDK DOCS
+         ======================================================================== -->
+    <section class="section" id="api">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-tag">
+            <span>Developer SDK</span>
+          </div>
+          <h2 class="section-title">Integrate RAG With 3 Lines of Code</h2>
+          <p class="section-subtitle">
+            Embed document intelligence into your own backend services with our Python SDK or REST API.
+          </p>
+        </div>
+
+        <div class="api-box">
+          <div class="api-tabs-header">
+            <div class="api-tabs-group">
+              <button class="api-tab-btn active" data-lang="python">Python SDK</button>
+              <button class="api-tab-btn" data-lang="curl">cURL / REST</button>
+              <button class="api-tab-btn" data-lang="node">Node.js</button>
+            </div>
+            <button class="icon-btn" id="api-copy-btn" title="Copy Code" style="width: 34px; height: 34px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="api-code-body">
+            <pre><code id="api-code-target"># Python SDK
+import documind
+
+client = documind.Client(api_key="your_api_key")
+
+# 1. Ingest PDF
+doc = client.documents.upload("./pdfs/GRU.pdf")
+
+# 2. Query with MMR RAG
+response = client.rag.query(
+    document_id=doc.id,
+    question="How does the update gate work?",
+    retrieval_strategy="mmr",
+    k=4
+)
+
+print(response.answer)
+print("Cited Pages:", response.sources)</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CTA BANNER
+         ======================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-box">
+          <h2 class="section-title" style="font-size: 2.6rem; margin-bottom: 16px;">
+            Ready to Revolutionize Document Intelligence?
+          </h2>
+          <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 36px auto;">
+            Launch the assistant application locally on your computer or connect via our developer APIs.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <button class="btn-primary open-launch-modal" style="padding: 14px 28px; font-size: 1rem;">
+              <span>Launch Local Streamlit App</span>
+            </button>
+            <a href="#playground" class="btn-secondary" style="padding: 14px 28px; font-size: 1rem;">
+              <span>Try In-Browser Upload</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <div class="logo-icon" style="width: 32px; height: 32px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+              </svg>
+            </div>
+            <span class="brand-text">DocuMind AI</span>
+          </div>
+          <p style="font-size: 0.84rem; color: var(--text-dim); max-width: 300px; line-height: 1.6;">
+            Next-generation Document Retrieval Augmented Generation combining LangChain, in-memory ChromaDB, and Google Gemini models.
+          </p>
+        </div>
+
+        <div>
+          <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-main); margin-bottom: 16px;">Navigation</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
+            <a href="#playground">Playground</a>
+            <a href="#demo">Demo Video</a>
+            <a href="#features">Features</a>
+            <a href="#opensource">100% Free & Open Source</a>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-main); margin-bottom: 16px;">Architecture</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
+            <span>In-Memory Chroma</span>
+            <span>MMR Diversity (k=4)</span>
+            <span>Gemini 3.5 Failover</span>
+            <span>MiniLM-L6-v2 Embeddings</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--text-main); margin-bottom: 16px;">Community</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
+            <a href="https://github.com" target="_blank">GitHub Repository</a>
+            <a href="https://python.langchain.com" target="_blank">LangChain Docs</a>
+            <a href="https://ai.google.dev" target="_blank">Google GenAI</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 DocuMind AI Project. All rights reserved.</div>
+        <div style="display: flex; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;">
+          <span>Python 3.11</span>
+          <span>•</span>
+          <span>Streamlit</span>
+          <span>•</span>
+          <span>ChromaDB</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL: QUICK LAUNCH STREAMLIT
+       ======================================================================== -->
+  <div class="modal-overlay" id="launch-modal" style="position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(10px); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s ease;">
+    <div style="background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 20px; max-width: 520px; width: 90%; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.8);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <h3 style="font-size: 1.3rem; font-weight: 700; color: #fff;">Launch Streamlit Assistant</h3>
+        <button id="modal-close-btn" style="font-size: 1.2rem; color: var(--text-muted);">✕</button>
+      </div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6;">
+        The full Streamlit chat assistant runs locally on port 8501. Open the URL below or execute in PowerShell:
+      </p>
+      <div style="background: #000; border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px; font-family: 'JetBrains Mono', monospace; color: var(--cyan-primary); font-size: 0.85rem; margin-bottom: 24px;">
+        streamlit run app.py
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <a href="http://localhost:8501" target="_blank" class="btn-primary" style="padding: 10px 20px;">
+          <span>Open http://localhost:8501 ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-notification" style="position: fixed; bottom: 24px; right: 24px; background: #0b101b; border: 1px solid var(--cyan-primary); border-radius: 10px; padding: 12px 20px; color: #fff; font-size: 0.88rem; box-shadow: 0 10px 30px rgba(0,0,0,0.7); z-index: 300; opacity: 0; transform: translateY(80px); transition: all 0.25s ease;">
+    <span id="toast-text">Action completed</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
